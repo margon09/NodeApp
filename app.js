@@ -1,7 +1,7 @@
 const express = require('express')
 const expressLayouts = require('express-ejs-layouts')
 const app = express()
-const port = 8080
+const port = 8080 | process.env.PORT
 
 // express middleware
 app.use(express.static('public'))
