@@ -1,0 +1,549 @@
+<section class="moveDiv">
+	<h1>RESTful API with Express</h1>
+	<div class="row">
+		<!-- <div class="col"> -->
+		<div class="col-sm-8">
+			<p>A REST API (also known as RESTful API) is an application programming interface (API or web API) that conforms
+				to
+				the constraints of REST architectural style and allows for interaction with RESTful web services. REST stands
+				for
+				representational state transfer. When a client request is made via a RESTful API, it transfers a representation
+				of
+				the state of the resource to the requester or endpoint. This information, or representation, is delivered in one
+				of
+				several formats via HTTP: JSON (Javascript Object Notation), HTML, XLT, Python, PHP, or plain text. JSON is the
+				most generally popular format to use because, despite its name, it’s language-agnostic, as well as readable by
+				both
+				humans and machines. </p>
+			<p>Express is a simple, minimalistic and lightweight framework for building web
+				servers.</p>
+			<p>REST defines a set of conventions for creating HTTP services:</p>
+			<ul class="dash">
+				<li><span class="marked">POST</span> to create a resource</li>
+				<li><span class="marked">PUT</span> to update it</li>
+				<li><span class="marked">GET</span> to read it</li>
+				<li><span class="marked">DELETE</span> to delete it</li>
+			</ul>
+		</div>
+
+		<div class="col-sm-4">
+			<div class="card" id="box">
+				<div class="card-body">
+					<h5 class="card-title">RESTful APIs</h5>
+					<img class="card-img-top" src="img/api.png" alt="Card image cap">
+				</div>
+			</div>
+		</div>
+
+	</div>
+</section>
+
+
+<section class="moveDiv2">
+	<h1>Anatomy of a REST API</h1>
+</section>
+
+<section class="moveDiv3">
+	<div class="row">
+
+		<div class="col-sm-8">
+			<h2>CRUD Operations</h2>
+			<p>REST APIs are used to access and manipulate data using a common set of stateless operations. These operations
+				are
+				integral to the HTTP protocol and represent essential create, read, update, and delete (CRUD) functionality,
+				although not in a clean one-to-one manner: </p>
+			<ul class="dash">
+				<li><span class="marked">GET</span> (retrieve an index of resources or an individual resource)</li>
+				<li><span class="marked">POST</span> (create a resource or generally provide data)</li>
+				<li><span class="marked">PUT</span> (create or replace a resource)</li>
+				<li><span class="marked">PATCH</span> (update/modify a resource)</li>
+				<li><span class="marked">DELETE</span> (remove a resource)</li>
+			</ul>
+			<p>Using these HTTP methods and a resource name(noun) as an address, we can build a REST API by creating an
+				endpoint
+				for each operation. And by implementing the pattern, we will have a stable and easily understandable foundation
+				enabling us to evolve the code rapidly and maintain it afterwards. </p>
+		</div>
+
+		<div class="col-sm-4">
+			<div class="card" id="box0">
+				<div class="card-body">
+					<h5 class="card-title">CRUD operations</h5>
+					<img class="card-img-top" src="img/crud1.png" alt="Card image cap">
+				</div>
+			</div>
+		</div>
+
+	</div>
+</section>
+
+
+<section class="moveDiv4">
+	<div class="row">
+
+		<div class="col-sm-8">
+			<h2>Designing a REST API</h2>
+			<p>A good practice when designing a REST API is to create a list or table with HTTP methods and endpoints</p>
+			<ul class="dash">
+				<li><span class="marked">GET</span> on the endpoint <span class="marked">/courses</span> (list all courses)</li>
+				<li><span class="marked">GET</span> on the endpoint <span class="marked">/courses/:coursesId</span> (get a
+					specific
+					course
+					by id)</li>
+				<li><span class="marked">POST</span> on the endpoint <span class="marked">/courses</span> (create a new course)
+				</li>
+				<li><span class="marked">PATCH</span> on the endpoint <span class="marked">/courses/:coursesId</span> (update
+					the
+					data for
+					a specific course
+					by
+					id)</li>
+				<li><span class="marked">DELETE</span>on the endpoint /courses/:coursesId (delete a specific course by id)</li>
+			</ul>
+
+		</div>
+
+		<div class="col-sm-4">
+			<div class="card" id="box1">
+				<div class="card-body">
+					<h5 class="card-title">CRUD operations</h5>
+					<img class="card-img-top" src="img/table.png" alt="Card image cap">
+				</div>
+			</div>
+		</div>
+
+	</div>
+</section>
+
+<section class="moveDiv5">
+	<div class="row">
+
+		<div class="col-sm-8">
+			<h2>Implementation of the REST API</h2>
+			<p>Example is shown with Express and JOI validation package. First make a project folder (e.g. <span
+					class="sudo">mkdir courses-app</span>, then
+				create an app.js file in the root folder. Through the terminal create your json file, e.g. <span
+					class="sudo">nmp init --y</span>. Then load joi module (in order to use validation package) and express
+				module, e.g. <span class="sudo">npm i
+					joi</span>, <span class="sudo">npm i
+					express</span>.</p>
+
+
+		</div>
+
+		<div class="col-sm-4">
+			<div class="card" id="box3">
+				<div class="card-body">
+					<h5 class="card-title">app.js</h5>
+					<pre class="card-text">const Joi = require('joi') 
+const express = require('express')
+
+const app = express()
+
+// enabling parsing the name obj in the body 
+of the course
+
+app.use(express.json())</pre>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</section>
+
+
+<section class="moveDiv6">
+	<div class="row">
+
+		<div class="col-sm-8">
+			<p>Further down create courses array.</p>
+			<p>Note that for all the requests down below POSTMAN platform was
+				used.</p>
+		</div>
+
+		<div class="col-sm-4">
+			<div class="card" id="box4">
+				<div class="card-body">
+					<h5 class="card-title">app.js</h5>
+					<pre class="card-text">const courses = [
+        { id: 1, name: 'course 1' },
+        { id: 2, name: 'course 2' },
+        { id: 3, name: 'course 3' }
+]</pre>
+					<a href="https://www.postman.com/" class="card-link">POSTMAN</a>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</section>
+
+<section class="moveDiv7">
+	<div class="row">
+
+		<div class="col-sm-8">
+			<p>Routing refers to how an application’s endpoints (URIs) respond to client requests. You define routing using
+				methods of the Express app object that correspond to HTTP methods; for example, app.get() to handle GET requests
+				and app.post to handle POST requests. You can also use app.all() to
+				handle all HTTP methods and app.use() to specify middleware as the callback function.</p>
+			<p>These routing methods specify a callback function (sometimes called “handler functions”) called when the
+				application receives a request to the specified route (endpoint) and HTTP method. In other words, the
+				application
+				“listens” for requests that match the specified route(s) and method(s), and when it detects a match, it calls
+				the
+				specified callback function.
+
+				In fact, the routing methods can have more than one callback function as arguments. With multiple callback
+				functions, it is important to provide next as an argument to the callback function and then call next() within
+				the
+				body of the function to hand off control to the next callback.</p>
+			<p>A route method is derived from one of the HTTP methods, and is attached to an instance of the express class.
+			</p>
+			<p>Create GET method route for all courses or a single course and send the response back to the client. Check if
+				the
+				course/id exists.</p>
+			<p>Express supports methods that correspond to all HTTP request methods: get, post, and so on. There is a special
+				routing method, app.all(), used to load middleware functions at a path for all HTTP request methods. For
+				example,
+				the following handler is executed for requests to the route “/secret” whether using GET, POST, PUT, DELETE, or
+				any
+				other HTTP request method supported in the http module.</p>
+		</div>
+
+		<div class="col-sm-4">
+			<div class="card" id="box5">
+				<div class="card-body">
+					<h5 class="card-title">app.js</h5>
+					<pre class="card-text">
+app.get('/', (req, res) => {
+	res.send('This is a main page')
+})
+
+// GET ALL COURSES
+app.get('/api/courses', (req, res) => {
+	res.send(courses)
+})
+
+// GET SINGLE COURSE
+app.get('/api/courses/:id', (req, res) => {
+	const course = courses.find(c => 
+	  c.id === parseInt(req.params.id))
+	if (!course) return res
+	  .status(404)
+		.send('There is no course 
+		       with this id')
+	res.send(course)
+})</pre>
+
+					<a href="https://www.digitalocean.com/community/tutorials/nodejs-req-object-in-expressjs"
+						class="card-link">req Object in Express</a>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</section>
+
+
+
+<section class="moveDiv7">
+	<div class="row">
+
+		<div class="col-sm-8">
+			<p>Here is a POST method route, that will help to create a single course with validation. The created course will
+				be pushed into the courses array. Finally the course will be sent to the client.</p>
+		</div>
+
+		<div class="col-sm-4">
+			<div class="card" id="box6">
+				<div class="card-body">
+					<h5 class="card-title">app.js</h5>
+					<pre class="card-text">
+// CREATE a SINGLE COURSE
+app.post('/api/courses', (req, res) => {
+// Validation with object destructor
+const {
+error
+} = validateCourse(req.body) // result.error 
+if (error) return res
+   .status(400)
+.send(result.error.details[0].message)
+
+const course = {
+id: courses.length + 1,
+name: req.body.name
+}
+
+courses.push(course)
+
+res.send(course)
+})</pre>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</section>
+
+<!-- ******************************************************'' -->
+<section class="moveDiv8">
+	<div class="row">
+
+		<div class="col-sm-8">
+			<p>Here is the UPDATEd route of a single course, using validation</p>
+		</div>
+
+		<div class="col-sm-4">
+			<div class="card" id="box7">
+				<div class="card-body">
+					<h5 class="card-title">app.js</h5>
+					<pre class="card-text">
+// UPDATE a COURSE
+app.put('/api/courses/:id', (req, res) => {
+// 1. Look up the course with given id
+// 1.1. If not existing, return 404
+const course = courses.find(c => 
+ c.id === parseInt(req.params.id))
+if (!course) return res.status(404)
+ .send('There is no course with this id')
+
+// 2. Validate (with Object destructor)
+// 2.2 If invalid, return 400 ("bad request")
+const {
+error
+} = validateCourse(req.body) // result.error
+
+if (error) 
+ return res.status(400)
+ .send(result.error.details[0].message)
+
+// 3. Update course
+course.name = req.body.name
+// 3.3 Return the updated course to the client
+res.send(course)
+})</pre>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</section>
+
+
+<section class="moveDiv9">
+	<div class="row">
+
+		<div class="col-sm-8">
+			<p>DELETE route for the course is pretty straight forward.</p>
+		</div>
+
+		<div class="col-sm-4">
+			<div class="card" id="box8">
+				<div class="card-body">
+					<h5 class="card-title">app.js</h5>
+					<pre class="card-text">
+// DELETE a COURSE
+app.delete('/api/courses/:id', (req, res) => {
+// Look up the course with a given id
+// Not existing, return 404
+const course = courses.find(c => 
+ c.id === parseInt(req.params.id))
+if (!course) 
+  return res.status(404)
+	.send('There is no course with this id')
+
+// Delete
+const index = courses.indexOf(course)
+courses.splice(index, 1)
+
+// Return the same course (that was deleted)
+res.send(course)
+</pre>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</section>
+
+<section class="moveDiv10">
+	<div class="row">
+
+		<div class="col-sm-8">
+			<p>Validation function validateCourse (with the course parameter) was created in order to avoid repetitions in the
+				code.</p>
+			<p>And finally the port variable is used to connect to the port 8080</p>
+		</div>
+
+		<div class="col-sm-4">
+			<div class="card" id="box9">
+				<div class="card-body">
+					<h5 class="card-title">app.js</h5>
+					<pre class="card-text">
+// VALIDATION FUNCTION
+function validateCourse(course) {
+const schema = Joi.object({
+name: Joi.string().min(3).required()
+})
+return schema.validate(course)
+}
+
+// PORT
+const port = process.env.PORT || 8080
+app.listen(port, () => {
+console.log(`Listening to port ${port}...`)
+})
+</pre>
+					<a href="https://expressjs.com/en/guide/routing.html" class="card-link">Express Routing</a>
+					<a href="https://expressjs.com/en/4x/api.html#app.METHOD" class="card-link">app methods</a>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</section>
+
+
+<section class="moveDiv10">
+	<div class="row">
+
+		<div class="col-sm-10">
+			<h2>How To Use the req Object in Expres</h2>
+			<p>Short for request, the req object is one half of the request and response cycle to examine calls from the
+				client
+				side, make HTTP requests, and handle incoming data whether in a string or JSON object.</p>
+			<h5>Managing Client-Side Data</h5>
+			<p>Express servers receive data from the client side through the req object in three instances: the req.params,
+				req.query, and req.body objects.
+
+				The req.params object captures data based on the parameter specified in the URL. In your index.js file,
+				implement a
+				GET request with a parameter of '/:userid':</p>
+			<pre><span class="sudo">// GET https://example.com/user/1
+
+app.get('/:userid', (req, res) => {
+  console.log(req.params.userid) // "1"
+})</span></pre>
+
+			<p>The req.params object tells Express to output the result of a user’s id through the parameter '/:userid'. Here,
+				the
+				GET request to https://example.com/user/1 with the designated parameter logs into the console an id of "1".
+
+				To access a URL query string, apply the req.query object to search, filter, and sort through data. In your
+				index.js
+				file, include a GET request to the route '/search':</p>
+			<pre><span class="sudo">// GET https://example.com/search?keyword=great-white
+
+app.get('/search', (req, res) => {
+  console.log(req.query.keyword) // "great-white"
+})</span></pre>
+
+			<p>Utilizing the req.query object matches data loaded from the client side in a query conditional. In this case,
+				the GET
+				request to the '/search' route informs Express to match keywords in the search query to https://example.com. The
+				result from appending the .keyword property to the req.query object logs into the console, "great-white".
+
+				The req.body object allows you to access data in a string or JSON object from the client side. You generally use
+				the
+				req.body object to receive data through POST and PUT requests in the Express server.
+
+				In your index.js file, set a POST request to the route '/login':</p>
+
+			<pre><span class="sudo">// POST https://example.com/login
+//
+//      {
+//        "email": "user@example.com",
+//        "password": "helloworld"
+//      }
+
+app.post('/login', (req, res) => {
+  console.log(req.body.email) // "user@example.com"
+  console.log(req.body.password) // "helloworld"
+})</span></pre>
+
+			<p>When a user inputs their email and password on the client side, the req.body object stores that information and
+				sends
+				it to your Express server. Logging the req.body object into the console results in the user’s email and
+				password.
+
+				Now that you’ve examined ways to implement the req object, let’s look at other approaches to integrate into your
+				Express server.</p>
+
+			<h5>Examining the URL With req Properties</h5>
+
+			<p>Properties on the req object can also return the parts of a URL based on the anatomy. This includes the
+				protocol,
+				hostname, path, originalUrl, and subdomains.
+
+				In your index.js file, set a GET request to the '/creatures' route:</p>
+
+			<pre><span class="sudo">// https://ocean.example.com/creatures?filter=sharks
+
+app.get('/creatures', (req, res) => {
+  console.log(req.protocol)     // "https"
+  console.log(req.hostname)     // "example.com"
+  console.log(req.path)         // "/creatures"
+  console.log(req.originalUrl)  // "/creatures?filter=sharks"
+  console.log(req.subdomains)   // "['ocean']"
+})</span></pre>
+
+			<p>You can access various parts of the URL using built-in properties such as .protocol and .hostname. Logging the
+				req
+				object with each of the properties results in the anatomy of the URL.</p>
+
+			<h5>Analyzing Additional req Properties</h5>
+			<p>The res object consists of properties to maximize your calls to HTTP requests.
+
+				To access the HTTP method, whether a GET, POST, PUT, or DELETE, utilize the .method property to your req object.
+				In
+				your index.js file, implement a DELETE request to an anonymous endpoint:</p>
+
+			<pre><span class="sudo">app.delete('/', (req, res) => {
+  console.log(req.method) // "DELETE"
+})</span></pre>
+
+			<p>The .method property returns the current HTTP request method. In this case, the console logs a DELETE method.
+
+				For headers sent into your server, append the method .header() to your req object. Set a POST request to the
+				route
+				'/login' in your index.js file:</p>
+
+			<pre><span class="sudo">app.post('/login', (req, res) => {
+  req.header('Content-Type')  // "application/json"
+  req.header('user-agent')    // "Mozilla/5.0 (Macintosh Intel Mac OS X 10_8_5) AppleWebKi..."
+  req.header('Authorization') // "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9..."
+})</span></pre>
+
+			<p>The req.header() method will return the header type such as Content-Type and Authorization. The argument for
+				req.header() is case-insensitive so you can use req.header('Content-Type') and req.header('content-type')
+				interchangeably.
+
+				If you’ve added cookie-parser as a dependency in your Express server, the req.cookies property will store values
+				from
+				your parser. In your index.js file, set an instance of req.cookies and apply the sessionDate property:</p>
+
+
+			<pre><span class="sudo">// Cookie sessionDate=2019-05-28T01:49:11.968Z
+
+req.cookies.sessionDate // "2019-05-28T01:49:11.968Z"</span></pre>
+			<p>Notice the result returned from the a cookie’s session date when called from the req object.</p>
+			<p>Express provides built-in properties to utilize the req object as part of the request cycle to handle HTTP
+				requests and data from the client side.</p>
+
+			<div class="myResReqLinks">
+				<a href="https://www.digitalocean.com/community/tutorials/nodejs-req-object-in-expressjs" class="card-link">
+					How To
+					Use the req Object in Express
+				</a>
+				<br />
+				<a href="https://www.digitalocean.com/community/tutorials/nodejs-res-object-in-expressjs" class="card-link">
+					How To
+					Use the res Object in Express
+				</a>
+			</div>
+		</div>
+
+
+
+	</div>
+</section>

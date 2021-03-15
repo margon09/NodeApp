@@ -1,0 +1,375 @@
+/* light theme colors */
+html {
+	--bg: #FCFCFC !important;
+	--bg-panel: #EEEEEE !important;
+	--bg-menu: ghostwhite !important;
+	/*box container*/
+	--color-headings: #837652 !important;
+	--color-headings-second: #8f6620 !important;
+	--color-headings-third:#726e64 !important;
+	--color-headings-fifth: #837652 !important;
+	/*heading*/
+	--color-text: #393e46 !important;
+	/* menu */
+	--color-menu: rgb(103, 75, 4) !important;
+	--bg-image: linear-gradient(ghostwhite, #eee);
+	--active-menu:#f4f1e9 !important;
+	--text-shadow: 1px 1px 1px #919191,
+	1px 2px 1px #919191,
+	1px 3px 1px #919191,
+	1px 4px 1px #919191,
+	1px 5px 1px #919191,
+	1px 6px 1px #919191,
+	1px 7px 1px #919191,
+	1px 8px 1px #919191,
+	1px 9px 1px #919191,
+	1px 10px 1px #919191,
+	1px 18px 6px rgba(16, 16, 16, 0.4),
+	1px 22px 10px rgba(16, 16, 16, 0.2),
+	1px 25px 35px rgba(16, 16, 16, 0.2),
+	1px 30px 60px rgba(16, 16, 16, 0.4);
+	--color-node: rgb(14, 136, 14);
+	
+}
+
+/* dark theme colors */
+html[data-theme='dark'] {
+	--bg: #232931 !important;
+	--bg-panel: #393E46 !important;
+	--bg-menu: rgb(107, 107, 113) !important;
+	--active-menu: #8e6c75 !important;
+	--color-headings: #00ADB5 !important;
+	--color-headings-second: #b6a9ad !important;
+	--color-headings-third:#c7c0b0 !important;
+	--color-headings-fifth: #b0a3a6 !important;
+	/*heading*/
+	--color-text: #c1c1c1 !important;
+	--color-menu: #16cdd7 !important;
+	--bg-image: linear-gradient(rgb(148, 117, 117), rgb(117, 159, 158));
+	--text-shadow: 1px 1px 1px rgb(117, 159, 158),
+	1px 2px 1px rgb(117, 159, 158),
+	1px 3px 1px rgb(117, 159, 158),
+	1px 4px 1px rgb(117, 159, 158),
+	1px 5px 1px rgb(117, 159, 158),
+	1px 6px 1px rgb(117, 159, 158),
+	1px 7px 1px rgb(117, 159, 158),
+	1px 8px 1px rgb(117, 159, 158),
+	1px 9px 1px rgb(117, 159, 158),
+	1px 10px 1px rgb(117, 159, 158),
+	1px 18px 6px rgb(148, 117, 117),
+	1px 22px 10px rgb(148, 117, 117),
+	1px 25px 35px rgb(148, 117, 117),
+	1px 30px 60px rgb(148, 117, 117);
+	--color-node: #02807e;
+	--bg-active: rgb(148, 117, 117) !important;
+}
+.jumbotron {
+	background-color: var(--bg-panel) !important;
+}
+/* box container */
+.box{
+	background-color: var(--bg-panel) !important;
+	cursor: auto;
+}
+
+/* menu */
+ .menuDiv{
+	 background-color: var(--bg-menu);
+ }
+ .main-menu{
+	 margin-top: 60px;
+	 padding-top: 0 !important;
+	 margin-right: 10px;
+	 display:block;
+	 width:auto;
+ }
+ .node-menu {
+	float:right;
+	padding:0;
+	margin-top:-90px;
+	font-weight: bold;
+	font-family: Verdana, Geneva,Tahoma,sans-serif;
+	font-size: 5em;
+	font-weight: 900;
+	color: #232931;
+  text-shadow: var(--text-shadow);
+ }
+.node-menu .green{
+	color: var(--color-node);
+}
+
+
+header {
+	padding: 20px;
+}
+footer {
+	text-align: center;
+	padding: 20px;
+	margin-top: 2em;
+	background-color: var(--bg-menu);
+	border-right: 1px solid rgba(167, 129, 129, .5);
+	transition: border, box-shadow .3s;
+}
+/* .mainBody { */
+section{
+	background-color: var(--bg-menu);
+	padding: 2%;
+	margin-bottom: 2%;
+}
+h1{
+	color: var(--color-headings);
+	margin: 1%;
+	padding-bottom: .5%;
+}
+h2{
+	color: var(--color-headings-second);
+	margin: 1%;
+	padding-bottom: .5%;
+}
+h5 {
+	color: var(--color-headings-fifth);
+	padding-bottom: 1%;
+}
+h6 {
+	color: var(--color-headings-third);
+	padding-bottom: .5%;
+}
+p{
+	color: var(--color-text);
+	font-size: 17px;
+	text-align: justify;
+	text-justify: inter-word;
+}
+
+/* Card element */
+#b0,
+#b1,
+#b2,
+#b3,
+#b4,
+#b5,
+#b6,
+#box,
+#box0,
+#box1,
+#box3,
+#box4,
+#box5,
+#box6,
+#box7,
+#box8,
+#box9 {
+	position: relative;
+	background-color: var(--active-menu);
+	width: 26rem;
+	height: auto;
+	transition: 3s ease-out;
+}
+
+.npm{
+	margin-left: 2px !important;
+}
+
+.card{
+	width: auto !important;
+}
+
+.card-title {
+	color: var(--color-menu);
+}
+.card-subtitle{
+	color: black;
+}
+.card-text{
+	color: var(--color-text);
+}
+pre {
+	color: var(--color-text);
+	font-size: 17px;
+	font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans";
+	/* white-space: pre-wrap; */
+	/* overflow-x: auto; */
+}
+span.sudo{
+	color:rgb(84, 156, 172);
+	font-size: 17px;
+	font-family: Consolas,
+	"Andale Mono WT",
+	"Andale Mono",
+	"Lucida Console",
+	"Lucida Sans";
+}
+pre:hover,
+pre:focus {
+	width: min-content;
+}
+pre.colorStyled{
+	color:rgb(84, 156, 172);
+}
+.card-link{
+	color: var(--color-menu);
+}
+
+/* formatting list with dash */
+.section{
+	padding: 3px;
+	margin-bottom: 2%;
+}
+ul.dash {
+	list-style: none;
+	margin-left: 0;
+	padding-left: 1em;
+	color: var(--color-text);
+}
+ul.dash>li:before {
+	display: inline-block;
+	content: "-";
+	width: 1em;
+	margin-left: -1em;
+}
+
+
+/*MENU*/
+.nav-link {
+	font-size: 24px;
+	box-shadow: 4px 4px 2px -3px lightgray;
+	border-right: 1px solid rgba(167, 129, 129, .5);
+	transition: border, box-shadow .3s;
+	min-width: 120px;
+	min-height: 40px;
+	color: var(--color-menu);
+	text-align: center;
+	border-radius: 5px !important;
+}
+
+nav.nav li.active a:focus,
+nav.nav li.active a:active,
+nav.nav li.active a:target,
+nav.nav li.active a {
+	background-color: var(--active-menu);
+}
+.nav-link:hover {
+	background-image: var(--bg-image);
+	color: var(--color-menu);
+	box-shadow: 3px 20px 15px 0px rgba(0, 0, 0, .25);
+	cursor: pointer;
+}
+.active {
+	background-color: #4c95af27;
+}
+
+
+/* node js rotation */
+.rot{
+	-ms-transform: rotate3d(0, 1, 0, 180deg);
+	-webkit-transform: rotate3d(0, 1, 0, 180deg);
+	transform: rotate3d(0, 1, 0, 180deg);
+}
+
+div .jsDark {
+	-webkit-transition: transform 1s ease-in-out;
+	transition: transform 1s ease-in-out;
+	width: 400px;
+	cursor: pointer;
+}
+
+
+/* form with toggle for dark/light theme*/
+form {
+	width: 100px;
+	height: 50px;
+}
+
+/* checkbox toggler */
+input[type=checkbox] {
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+
+label {
+	cursor: pointer;
+}
+
+/* transition */
+html.transition,
+html.transition *,
+html.transition *:before,
+html.transition *:after {
+	transition: all 750ms !important;
+	transition-delay: 0 !important;
+}
+
+/* moving sections from bottom to top */
+.moveDiv {
+position: relative;
+transition: 1s ease-out;
+}
+
+.moveDiv2 {
+	position: relative;
+	transition: 1.5s ease-out;
+}
+
+.moveDiv3 {
+	position: relative;
+	transition: 2s ease-out;
+}
+
+.moveDiv4 {
+	position: relative;
+	transition: 2.5s ease-out;
+}
+.moveDiv5 {
+	position: relative;
+	transition: 3s ease-out;
+}
+.moveDiv6 {
+	position: relative;
+	transition: 3.5s ease-out;
+}
+.moveDiv7 {
+	position: relative;
+	transition: 4s ease-out;
+}
+.moveDiv8 {
+	position: relative;
+	transition: 4.5s ease-out;
+}
+.moveDiv9 {
+	position: relative;
+	transition: 5s ease-out;
+}
+.moveDiv10 {
+	position: relative;
+	transition: 5.5s ease-out;
+}
+
+.marked{
+	color:var(--color-text);
+	border: 1px solid rgb(162, 162, 162);
+	vertical-align: middle;
+	border-radius: 2px;
+	background:var(--active-menu);
+}
+
+#btnChangeTxt {
+	margin-top: -50px;
+	float:right;
+	position:relative;
+	cursor:pointer;
+	text-align: center;
+	width: 200px;
+	height: 30px;
+	z-index: 0;
+}
+
+.myResReqLinks{
+	margin: auto;
+	text-align: center;
+}
+
+.myResReqLinks a {
+	color: var(--color-menu);
+	text-transform: uppercase;
+}

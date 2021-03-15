@@ -1,0 +1,684 @@
+<section class="moveDiv">
+	<h1>Worth remembering from JS</h1>
+	<div class="row">
+		<div class="col-sm-8">
+			<p>
+				JavaScript (JS) is a lightweight, interpreted, or just-in-time compiled programming language with first-class
+				functions. While it is most well-known as the scripting language for Web pages, many non-browser environments
+				also
+				use it, such as Node.js, Apache CouchDB and Adobe Acrobat. JavaScript is a prototype-based, multi-paradigm,
+				single-threaded, dynamic language, supporting object-oriented, imperative, and declarative (e.g. functional
+				programming) styles. The standard for JavaScript is ECMAScript. As of 2012, all modern browsers fully support
+				ECMAScript 5.1. Older browsers support at least ECMAScript 3. On June 17, 2015, ECMA International published the
+				sixth major version of ECMAScript, which is officially called ECMAScript 2015, and was initially referred to as
+				ECMAScript 6 or ES6.
+			</p>
+		</div>
+</section>
+
+
+<section class="moveDiv2">
+	<div class="row">
+
+		<div class="col-sm-8">
+			<h2>Variables declared as <span class="sudo" style="font-size: 30px;">const</span></h2>
+			<br />
+			<h5>1. No re-assigning</h5>
+			<p>
+				Variable declared using <span class="sudo">const</span> can't be re-assigned. Note that it doesn't mean that the
+				value is
+				immutable. Its
+				properties still can be changed. If you want to have an immutable object, you should use <span
+					class="sudo">Object.freeze()</span>.
+			</p>
+			<h5>2. Initializer is required</h5>
+			<p>You must always specify a value when declaring a variable using <span class="sudo">const</span>.</p>
+			<br />
+			<h2>The difference between <span class="sudo" style="font-size: 30px;">var and let</span></h2>
+			<br />
+			<h5>1. Scoping Rules</h5>
+			<p>Main difference is scoping rules. Variables declared by <span class="sudo">var</span> keyword are scoped to the
+				immediate function
+				body
+				(hence the function scope) while <span class="sudo">let</span> variables are scoped to the immediate enclosing
+				block
+				denoted by <span class="sudo">{ }</span> (hence
+				the block scope). The reason why <span class="sudo">let</span> keyword was introduced to the language was
+				function scope is
+				confusing and
+				was
+				one of the main sources of bugs in JavaScript.
+				Global let variables are not added to the global window object.
+			</p>
+			<h5>2. Hoisting</h5>
+			<p>While variables declared with <span class="sudo">var</span> keyword are hoisted (initialized with undefined
+				before the
+				code is run) which
+				means they are accessible in their enclosing scope even before they are declared.
+				<span class="sudo">let</span> variables are not initialized until their definition is evaluated. Accessing them
+				before the
+				initialization
+				results in a ReferenceError. Variable said to be in "temporal dead zone" from the start of the block until the
+				initialization is processed.
+			</p>
+			<h5>3. Creating global object property</h5>
+			<p>At the top level, <span class="sudo">let</span>, unlike <span class="sudo">var</span>, does not create a
+				property on the
+				global object.</p>
+			<h5>4. Redeclaration</h5>
+			<p>In strict mode, <span class="sudo">var</span> will let you re-declare the same variable in the same scope while
+				<span class="sudo">let</span>
+				raises a SyntaxError.
+			</p>
+			<p><span class="sudo">let</span> can also be used to avoid problems with closures. It binds fresh value rather
+				than keeping
+				an old
+				reference.</p>
+		</div>
+
+		<div class="col-sm-4">
+			<div class="card" id="box">
+				<div class="card-body">
+					<h5 class="card-title">constant variables</h5>
+					<pre class="card-text">const obj = {};
+obj.a = 42;
+console.log(obj.a); // 42
+// Initialization of the const:
+const a; 
+// SyntaxError: Missing initializer in 
+// const declaration
+</pre>
+					<a href="https://codeburst.io/difference-between-var-let-and-const-in-javascript-fbce2fba7b4"
+						class="card-link">difference between var, let, const</a>
+				</div>
+			</div>
+			<!-- ############################### -->
+			<br />
+			<div class="card" id="box0">
+				<div class="card-body">
+					<h5 class="card-title">scoping</h5>
+					<pre class="card-text">function run() {
+  var foo = "Foo";
+  let bar = "Bar";
+
+  console.log(foo, bar); // Foo Bar
+
+  {
+    var moo = "Mooo"
+    let baz = "Bazz";
+    console.log(moo, baz); // Mooo Bazz
+  }
+
+  console.log(moo); // Mooo
+  console.log(baz); // ReferenceError
+}
+
+run();</pre>
+				</div>
+			</div>
+
+
+			<!-- ############################### -->
+			<br />
+			<div class="card" id="box1">
+				<div class="card-body">
+					<h5 class="card-title">hoisting</h5>
+					<pre class="card-text">function run() {
+  console.log(foo); // undefined
+  var foo = "Foo";
+  console.log(foo); // Foo
+}
+
+run();
+
+function checkHoisting() {
+console.log(foo); // ReferenceError
+let foo = "Foo";
+console.log(foo); // Foo
+}
+
+checkHoisting();</pre>
+				</div>
+			</div>
+			<!-- ################################# -->
+			<br />
+			<div class="card" id="box3">
+				<div class="card-body">
+					<h5 class="card-title">global object property</h5>
+					<pre class="card-text">var foo = "Foo";  // globally scoped
+let bar = "Bar"; // globally scoped
+
+console.log(window.foo); // Foo
+console.log(window.bar); // undefined
+</pre>
+				</div>
+			</div>
+
+			<!--  -->
+			<br />
+			<div class="card" id="box4">
+				<div class="card-body">
+					<h5 class="card-title">redeclaration</h5>
+					<pre class="card-text">'use strict';
+var foo = "foo1";
+var foo = "foo2"; 
+// No problem, 'foo' is replaced.
+
+let bar = "bar1";
+let bar = "bar2"; 
+// SyntaxError: Identifier 'bar' has 
+// already been declared
+</pre>
+				</div>
+			</div>
+			<!-- ################################# -->
+		</div>
+	</div>
+</section>
+
+
+<section class="moveDiv3">
+	<h1>Using Functions</h1>
+</section>
+
+<section class="moveDiv4">
+	<div class="row">
+
+		<div class="col-sm-8">
+			<h2>map()</h2>
+			<h5>Why using <span class="sudo">map()</span> is more efficient than using <span class="sudo">forEach()</span>
+			</h5>
+			<p>Imagine you have received an array containing multiple objects – each one representing a person. The thing
+				you
+				really
+				need in the end, though, is an array containing only the id of each person.</p>
+			<pre><span class="sudo">// What you have
+var officers = [
+  { id: 20, name: 'Captain Piett' },
+  { id: 24, name: 'General Veers' },
+  { id: 56, name: 'Admiral Ozzel' },
+  { id: 88, name: 'Commander Jerjerrod' }
+];
+// What you need
+[20, 24, 56, 88]</span></pre>
+
+			<p>There are multiple ways to achieve this. You might want to do it by creating an empty array, then using
+				<span class="sudo">.forEach(),
+					.for(...of)</span>, or a simple <span class="sudo">.for()</span> to meet your goal.
+			</p>
+			<p>Basically <span class="sudo">map()</span> takes 2 arguments, a callback and an optional context (will be
+				considered as
+				this in the
+				callback)
+				which I did not use in the previous example. The callback runs for each value in the array and returns each new
+				value in the resulting array.
+
+				Keep in mind that the resulting array will always be the same length as the original array.</p>
+
+			<h2>reduce()</h2>
+			<p>Just like <span class="sudo">.map()</span>, <span class="sudo">.reduce()</span> also runs a callback for each
+				element of
+				an array. What’s different
+				here is that
+				<span class="sudo">reduce()</span> passes the result of this callback (the accumulator) from one array element
+				to the other.
+
+				The accumulator can be pretty much anything (integer, string, object, etc.) and must be instantiated or passed
+				when
+				calling <span class="sudo">.reduce()</span>.</p>
+			<p>For example, you have an array with these pilots and their respective years of experience:
+				<pre><span class="sudo">var pilots = [
+  {
+    id: 10,
+    name: "Poe Dameron",
+    years: 14,
+  },
+  {
+    id: 2,
+    name: "Temmin 'Snap' Wexley",
+    years: 30,
+  },
+  {
+    id: 41,
+    name: "Tallissan Lintra",
+    years: 16,
+  },
+  {
+    id: 99,
+    name: "Ello Asty",
+    years: 22,
+  }
+];</span></pre>
+			</p>
+			<p>We need to know the total years of experience of all of them. With <span class="sudo">.reduce()</span>, it’s
+				pretty
+				straightforward</p>
+			<p>I named my accumulator oldest. My callback compares the accumulator to each pilot. If a pilot has more years of
+				experience than oldest, then that pilot becomes the new oldest so that’s the one I return.
+
+				As you can see, using <span class="sudo">.reduce()</span> is an easy way to generate a single value or object
+				from an
+				array.</p>
+
+			<h2>filter()</h2>
+			<p>What if you have an array, but only want some of the elements in it? That’s where <span
+					class="sudo">.filter()</span>
+				comes in.
+				Here is our data:</p>
+			<pre><span class="sudo">var pilots = [
+  {
+    id: 2,
+    name: "Wedge Antilles",
+    faction: "Rebels",
+  },
+  {
+    id: 8,
+    name: "Ciena Ree",
+    faction: "Empire",
+  },
+  {
+    id: 40,
+    name: "Iden Versio",
+    faction: "Empire",
+  },
+  {
+    id: 66,
+    name: "Thane Kyrell",
+    faction: "Rebels",
+  }
+];</span></pre>
+			<p>Say we want two arrays now: one for rebel pilots, the other one for imperials.
+			</p>
+			<p>Basically, if the callback function returns true, the current element will be in the resulting array. If it
+				returns false, it won’t be.</p>
+
+			<h2>some()</h2>
+			<p>This array method helps you determine if one or more of its values correspond to something you’re looking for.
+				For example, you have a list of pilots:</p>
+			<pre><span class="sudo">var operatives = [
+  { id: 12, name: 'Baze Malbus', pilot: false },
+  { id: 44, name: 'Bodhi Rook', pilot: true },
+  { id: 59, name: 'Chirrut Îmwe', pilot: false },
+  { id: 122, name: 'Jyn Erso', pilot: false }
+];</span></pre>
+			<p>You want to know if there are any pilots among your operatives. There are many ways to achieve that goal. Most
+				people
+				will probably use <span class="sudo">.forEach()</span>
+			</p>
+			<p>You pass <span class="sudo">.some()</span> a function as the argument. That function runs for each value in the
+				array.
+				You can then see if
+				the value fits the condition you’ve written. The function must return a boolean (although a truthy/falsy value
+				works as well). As soon as one <span class="sudo">true</span> is returned, <span class="sudo">.some()</span>
+				will itself
+				return <span class="sudo">true</span>. If none of the
+				values, when
+				processed in your condition, return <span class="sudo">true</span> (if they all return <span
+					class="sudo">false</span>),
+				then <span class="sudo">.some()</span> will return
+				<span class="sudo">false</span>.</p>
+			<p>Note that as soon as a single <span class="sudo">true</span> is returned, <span class="sudo">.some()</span>
+				will stop
+				checking the other array
+				values. </p>
+			<h2>.every()</h2>
+			<p>Checks if every value of the array matches your condition by using <span class="sudo">.every()</span>. It works
+				exactly
+				like <span class="sudo">.some()</span>, but
+				will return <span class="sudo">true</span> only if every occurence match.</p>
+
+			<h2>.find()</h2>
+			<p>This array method does exactly what it says: it finds what you’re looking for. In a nutshell, <span
+					class="sudo">.find()</span> will return
+				the first value that corresponds to the passed condition.</p>
+			<p>Here is our list of operatives:</p>
+			<p>
+				<pre><span class="sudo">var operatives = [
+  { id: 12, name: 'Baze Malbus', pilot: false },
+  { id: 44, name: 'Bodhi Rook', pilot: true },
+  { id: 59, name: 'Chirrut Îmwe', pilot: false },
+  { id: 122, name: 'Jyn Erso', pilot: false }
+];</span></pre>
+			</p>
+			<p>It’s the same as before, except this time instead of asking ourselves if we have a pilot in our ranks, we want
+				the
+				profile of that pilot</p>
+		</div>
+
+		<div class="col-sm-4">
+			<div class="card" id="box5">
+				<div class="card-body">
+					<h5 class="card-title">map()</h5>
+					<pre class="card-text">let officersIds = officers.map(function 
+(officer) {
+  return officer.id
+});
+// being more efficient
+const officersIds = officers.map(officer => 
+officer.id);</pre>
+				</div>
+			</div>
+			<!-- ############### -->
+			<br />
+			<div class="card" id="box6">
+				<div class="card-body">
+					<h5 class="card-title">reduce()</h5>
+					<pre class="card-text">let totalYears = pilots.reduce(function 
+(accumulator, pilot) {
+  return accumulator + pilot.years;
+}, 0);
+
+// this can be shortened with ES6’s arrow 
+// functions
+
+const totalYears = pilots
+.reduce((acc, pilot) => 
+acc + pilot.years, 0);
+
+// If I want to find which pilot is the most 
+// experienced one. 
+// For that, I can use reduce as well
+
+let mostExpPilot = pilots
+.reduce(function (oldest, pilot) {
+return (oldest.years || 0) > 
+pilot.years ? oldest : pilot;
+}, {});</pre>
+				</div>
+			</div>
+
+			<!-- ############### -->
+			<br />
+			<div class="card" id="box7">
+				<div class="card-body">
+					<h5 class="card-title">filter()</h5>
+					<pre class="card-text">const rebels= pilots.filter(function (pilot) 
+{
+  return pilot.faction === "Rebels";
+});
+const empire = pilots.filter(function (pilot) 
+{
+  return pilot.faction === "Empire";
+});
+
+// even shorter with arrow functions:
+
+const rebels = pilots.filter(pilot => 
+  pilot.faction === "Rebels");
+const empire = pilots.filter(pilot => 
+  pilot.faction === "Empire");</pre>
+				</div>
+			</div>
+			<!-- #################### -->
+			<br />
+			<div class="card" id="box8">
+				<div class="card-body">
+					<h5 class="card-title">some()</h5>
+					<pre class="card-text">const listHasPilots = operatives.some(function 
+(operative) {
+  return operative.pilot;
+});
+
+// with arrow functions (requires ES6  
+// support, Babel or TypeScript)
+
+const listHasPilots = operatives
+  .some(operative => operative.pilot);</pre>
+				</div>
+			</div>
+			<!-- #################### -->
+			<br />
+			<div class="card" id="box9">
+				<div class="card-body">
+					<h5 class="card-title">find()</h5>
+					<pre class="card-text">const firstPilot = operatives.find(function 
+(operative) {
+  return operative.pilot;
+});
+
+// Even shorter with ES6’s arrow functions:
+
+const firstPilot = operatives
+.find(operative => operative.pilot);</pre>
+
+					<a href="https://medium.com/poka-techblog/simplify-your-javascript-use-map-reduce-and-filter-bd02c593cc2d"
+						class="card-link">functions1</a>
+					<a href="https://medium.com/poka-techblog/simplify-your-javascript-use-some-and-find-f9fb9826ddfd"
+						class="card-link">functions2</a>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</section>
+
+
+<section class="moveDiv4">
+	<h1>Callback Functions</h1>
+</section>
+
+<section class="moveDiv5">
+	<div class="row">
+
+		<div class="col-sm-8">
+			<h2>Functions are Objects in JS</h2>
+			<p>A callback function is a function passed into another function as an argument, which is then invoked inside the
+				outer function to complete some kind of routine or action.</p>
+			<p>JavaScript runs code sequentially in top-down order. However, there are some cases that code runs (or must run)
+				after something else happens and also not sequentially. This is called asynchronous programming.
+				Callbacks make sure that a function is not going to run before a task is completed but will run right after the
+				task
+				has completed. It helps us develop asynchronous JavaScript code and keeps us safe from problems and errors.
+				In JavaScript, the way to create a callback function is to pass it as a parameter to another function, and then
+				to
+				call it back right after something has happened or some task is completed.</p>
+			<p>Callbacks are often used to continue code execution after an asynchronous operation has completed — these are
+				called <italic>asynchronous callbacks</italic>. A good example is the callback functions executed inside a <span
+					class="sudo">.then()</span> block chained
+				onto the end of a promise after that promise fulfills or rejects. This structure is used in many modern web
+				APIs,
+				such as <span class="sudo">fetch().</span></p>
+		</div>
+
+		<div class="col-sm-4">
+			<div class="card" id="box8">
+				<div class="card-body">
+					<h5 class="card-title">callback functions</h5>
+					<pre class="card-text">function greeting(name) {
+  alert('Hello ' + name);
+}
+
+function processUserInput(callback) {
+let name= prompt('Please enter your name.');
+callback(name);
+}
+
+processUserInput(greeting);</pre>
+				</div>
+			</div>
+
+			<br />
+			<div class="card" id="box8">
+				<div class="card-body">
+					<h5 class="card-title">callback after 3 sec</h5>
+					<pre class="card-text">const message = function() {  
+console.log("This message is shown after 
+3 seconds");
+}
+setTimeout(message, 3000);
+
+// Alternatively, we can define a function  
+// directly inside another function, 
+// instead of calling it.
+
+setTimeout(function() {
+console.log("This message is shown after 
+3 seconds");
+}, 3000);
+
+// Since this function has no name, 
+// it´s called "anonymous function"</pre>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</section>
+
+
+<section class="moveDiv6">
+	<div class="row">
+
+		<div class="col-sm-8">
+			<h2>Promise</h2>
+			<p>A promise is an object that may produce a single value some time in the future: either a resolved value, or a
+				reason that it’s not resolved (e.g., a network error occurred). A promise may be in one of 3 possible states:
+				fulfilled, rejected, or pending. Promise users can attach callbacks to handle the fulfilled value or the reason
+				for
+				rejection. A promise will start doing whatever task you give it as soon as the promise constructor is invoked
+			</p>
+			<h5>How Promises Work</h5>
+			<p>A promise is an object which can be returned synchronously from an asynchronous function. It will be in one of
+				3
+				possible states:</p>
+			<ul class="dash">
+				<li>
+					<bold>Fulfilled</bold>: onFulfilled() will be called (e.g., resolve() was called)
+				</li>
+				<li>
+					<bold>Rejected</bold>: onRejected() will be called (e.g., reject() was called)
+				</li>
+				<li>
+					<bold>Pending</bold>: not yet fulfilled or rejected
+				</li>
+			</ul>
+			<p>A promise is settled if it’s not pending (it has been resolved or rejected). Sometimes people use resolved and
+				settled to mean the same thing: not pending.</p>
+			<p>Once settled, a promise can not be resettled. Calling resolve() or reject() again will have no effect. The
+				immutability of a settled promise is an important feature.</p>
+			<p>Native JavaScript promises don’t expose promise states. Instead, you’re expected to treat the promise as a
+				black
+				box. Only the function responsible for creating the promise will have knowledge of the promise status, or access
+				to resolve or reject.</p>
+			<p>Our wait(3000) call will wait 3000ms (3 seconds), and then log 'Hello!'. All spec-compatible promises define a
+				.then() method which you use to pass handlers which can take the resolved or rejected value.</p>
+			<p>The ES6 promise constructor takes a function. That function takes two parameters, resolve(), and reject(). In
+				the example above, we’re only using resolve(), so I left reject() off the parameter list. Then we call
+				setTimeout() to create the delay, and call resolve() when it’s finished.</p>
+			<p>You can optionally resolve() or reject() with values, which will be passed to the callback functions attached
+				with .then().</p>
+			<p>When I reject() with a value, I always pass an Error object. Generally I want two possible resolution states:
+				the normal happy path, or an exception — anything that stops the normal happy path from happening. Passing an
+				Error object makes that explicit.</p>
+			<h5>Important Promise Rules</h5>
+			<p>Promises following the spec must follow a specific set of rules:</p>
+			<ul class="dash">
+				<li>A promise or “thenable” is an object that supplies a standard-compliant .then() method.</li>
+				<li>A pending promise may transition into a fulfilled or rejected state.</li>
+				<li>A fulfilled or rejected promise is settled, and must not transition into any other state.</li>
+				<li>Once a promise is settled, it must have a value (which may be undefined). That value must not change.</li>
+			</ul>
+			<p>Change in this context refers to identity (===) comparison. An object may be used as the fulfilled value, and
+				object properties may mutate.</p>
+			<p>Every promise must supply a .then() method with the following signature:</p>
+			<pre><span class="sudo">(
+  onFulfilled?: Function,
+  onRejected?: Function
+) => Promise</span></pre>
+			<p>The .then() method must comply with these rules:</p>
+			<ul class="dash">
+				<li>Both onFulfilled() and onRejected() are optional.</li>
+				<li>If the arguments supplied are not functions, they must be ignored.</li>
+				<li>onFulfilled() will be called after the promise is fulfilled, with the promise’s value as the first argument.
+				</li>
+				<li>onRejected() will be called after the promise is rejected, with the reason for rejection as the first
+					argument.
+					The reason may be any valid JavaScript value, but because rejections are essentially synonymous with
+					exceptions, I
+					recommend using Error objects.</li>
+				<li>Neither onFulfilled() nor onRejected() may be called more than once.</li>
+				<li>.then() may be called many times on the same promise. In other words, a promise can be used to aggregate
+					callbacks.</li>
+				<li>.then() must return a new promise, promise2.</li>
+				<li>If onFulfilled() or onRejected() return a value x, and x is a promise, promise2 will lock in with (assume
+					the
+					same state and value as) x. Otherwise, promise2 will be fulfilled with the value of x.</li>
+				<li>If either onFulfilled or onRejected throws an exception e, promise2 must be rejected with e as the reason.
+				</li>
+				<li>If onFulfilled is not a function and promise1 is fulfilled, promise2 must be fulfilled with the same value
+					as
+					promise1.</li>
+				<li>If onRejected is not a function and promise1 is rejected, promise2 must be rejected with the same reason as
+					promise1.</li>
+			</ul>
+			<h5>Promise Chaining</h5>
+			<p>Because .then() always returns a new promise, it’s possible to chain promises with precise control over how and
+				where errors are handled. Promises allow you to mimic normal synchronous code’s try/catch behavior.</p>
+			<p>Like synchronous code, chaining will result in a sequence that runs in serial. In other words, you can do:</p>
+			<pre><span class="sudo">fetch(url)
+  .then(process)
+  .then(save)
+  .catch(handleErrors)
+;</span></pre>
+			<p>Assuming each of the functions, fetch(), process(), and save() return promises, process() will wait for fetch()
+				to
+				complete before starting, and save() will wait for process() to complete before starting. handleErrors() will
+				only run
+				if any of the previous promises reject.</p>
+
+			<h5>Error Handling</h5>
+			<p>Note that promises have both a success and an error handler, and it’s very common to see code that does this:
+			</p>
+			<pre><span class="sudo">save().then(
+  handleSuccess,
+  handleError
+);</span></pre>
+			<p>But what happens if handleSuccess() throws an error? The promise returned from .then() will be rejected, but
+				there’s
+				nothing there to catch the rejection — meaning that an error in your app gets swallowed. Oops!
+
+				For that reason, some people consider the code above to be an anti-pattern, and recommend the following,
+				instead:</p>
+			<pre><span class="sudo">save()
+  .then(handleSuccess)
+  .catch(handleError)
+;</span></pre>
+			<p>The difference is subtle, but important. In the first example, an error originating in the save() operation
+				will be
+				caught, but an error originating in the handleSuccess() function will be swallowed. In the second example,
+				.catch()
+				will handle rejections from either save(), or handleSuccess().</p>
+			<p>Of course, the save() error might be a networking error, whereas the handleSuccess() error may be because the
+				developer forgot to handle a specific status code. What if you want to handle them differently? You could opt to
+				handle them both:</p>
+			<pre><span class="sudo">save()
+  .then(
+    handleSuccess,
+    handleNetworkError
+  )
+  .catch(handleProgrammerError)
+;</span></pre>
+			<p>I recommend ending all promise chains!</p>
+		</div>
+
+		<div class="col-sm-4">
+			<div class="card" id="box8">
+				<div class="card-body">
+					<h5 class="card-title">promise</h5>
+					<pre class="card-text">const wait = time => new Promise((resolve)=> 
+setTimeout(resolve, time));
+
+// 'Hello!'
+wait(3000).then(() => console.log('Hello!')); </pre>
+
+					<a href="https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-promise-27fc71e77261"
+						class="card-link">what
+						is a promise</a>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</section>

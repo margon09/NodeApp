@@ -1,0 +1,327 @@
+<section class="moveDiv">
+	<h1>What is Node JS</h1>
+	<div class="row">
+		<div class="col-sm-8">
+			<ul class="dash">
+				<li>Node is a runtime environment for executing JS code.</li>
+				<li>Essentially, Node is a C++ program that embeds Chrome’s v8 engine, the fastest
+					JS engine in the world.</li>
+				<li>Node is used to build fast and scalable networking applications, e.g. RESTful services.</li>
+				<li>Node applications are single-threaded. That means a single thread is used to
+					serve all clients.</li>
+				<li>Node applications are asynchronous or non-blocking by default. That means
+					when the application involves I/O operations (e.g. accessing the file system or the
+					network), the thread doesn’t wait (or block) for the result of the operation. It is
+					released to serve other clients.</li>
+				<li>This architecture makes Node ideal for building I/O-intensive applications.</li>
+				<li>You should avoid using Node for CPU-intensive applications, such as a video
+					encoding service. Because while executing these operations, other clients have
+					to wait for the single thread to finish its job and be ready to serve them.</li>
+				<li>In Node, we don’t have browser environment objects such as window or the
+					document object. Instead, we have other objects that are not available in
+					browsers, such as objects for working with the file system, network, operating
+					system, etc.</li>
+			</ul>
+		</div>
+</section>
+
+
+<section class="moveDiv2">
+	<h1>File Structure of a Node Project</h1>
+</section>
+
+<section class="moveDiv3">
+	<div class="row">
+		<div class="col-sm-8">
+			<h2>1. Package json</h2>
+			<p>Package json is a mandatory file presented in the root directory of the project. It holds meta data and
+				dependencies required for the project. It is created by the command in the terminal</p>
+			<pre class="colorStyled">npm init -y</pre>
+			<p>"y" omitts all the questions, when
+				creating
+				the json file.
+			</p>
+			<p>Scripts, which should be executed for starting the node project, could also be specified in "scripts". Start in
+				terminla either
+				<pre class="colorStyled">npm start</pre>
+				<pre class="colorStyled">npm stop</pre>
+			</p>
+			<p>To install the required node dependency you need to run</p>
+			<pre class="colorStyled">npm install</pre>
+			<p>use <span class="sudo">sudo</span> on mac, which allows a system administrator to give certain users (or
+				groups of users) the ability to run some
+				(or all) commands as root while logging all commands and arguments.</p>
+
+		</div>
+
+
+
+		<div class="col-sm-4">
+			<div class="card" id="box">
+				<div class="card-body">
+					<h5 class="card-title">package.json</h5>
+					<!-- <h6 class="card-subtitle mb-2">package.json</h6> -->
+
+					<pre class="card-text">{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test 
+		specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}</pre>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+<section class="moveDiv4">
+	<div class="row">
+		<div class="col-sm-8">
+			<h2>2. Environmental variables</h2>
+			<p>.env file contains all the environment variables required for a project. It is also possible to set the
+				environmental variables in terminal, e.g.</p>
+			<pre class="colorStyled">export PORT=5000 </pre>
+			<pre class="colorStyled">export NODE_ENV=production</pre>
+			<pre class="colorStyled">export NODE_ENV=development</pre>
+		</div>
+
+
+		<div class="col-sm-4">
+			<div class="card" id="box0">
+				<div class="card-body">
+					<h5 class="card-title">environmental varibales</h5>
+					<pre class="card-text">const bug= require('debug')('app:startup')
+const dbDebugger= require('debug')('app:db')
+// show only debugging messages 
+export DEBUG=app:startup
+// remove debugging messages
+export DEBUG=
+// from multiples namespaces
+export DEBUG=app:startup,app:db
+// all the debug messages
+export DEBUG=app:*
+// during app running
+DEBUG=app:db nodemon app.js
+// using in the file:
+dbDebugger('Connected to the database...')</pre>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<section class="moveDiv5">
+	<div class="row">
+		<div class="col-sm-8">
+			<h2>3. Server</h2>
+			<p>server.js is the file which will be executed first in a node project. If you are using mongoDB the promise for
+				the
+				DB connection should be established here</p>
+		</div>
+
+
+		<div class="col-sm-4">
+			<div class="card" id="box1">
+				<div class="card-body">
+					<h5 class="card-title">server.js</h5>
+					<pre class="card-text">export const start = () => {
+  init()
+    .then(app => {
+      app.listen(port, () => {
+        let server =
+          (env === "secure" ? "https://" : 
+          "http://") + host + ":" + port;
+        console.log(
+          chalk.green("Development server 
+		      started on " + server)
+        );
+      });
+    })
+    .catch(err => {
+      console.error(err);
+    });
+};
+
+module.exports = start();</pre>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<section class="moveDiv6">
+	<div class="row">
+		<div class="col-sm-8">
+			<h2>4. .gitignore</h2>
+			<p>git ignore file should contain the list of files that should not be committed in a git push.</p>
+		</div>
+
+
+		<div class="col-sm-4">
+			<div class="card" id="box3">
+				<div class="card-body">
+					<h5 class="card-title">.gitignore</h5>
+					<pre class="card-text">/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/.idea
+/.vagrant
+/.vscode
+npm-debug.log
+yarn-error.log
+.env</pre>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<section class="moveDiv7">
+	<div class="row">
+		<div class="col-sm-8">
+			<h2>5. App.js/Index.js</h2>
+			<p>app.js is most likely the entry point for requiring a module (sometimes it is called index.js). In Node.js,
+				Node itself is the web server so you
+				don't need to name anything index.js but it's easier for people to understand which file to run first.</p>
+
+			<p>app.js typically handles your app startup, routing and other functions of your application and does require
+				other
+				modules to add functionality. If you're running a website or web app it would also handle become a basic HTTP
+				web
+				server.</p>
+		</div>
+
+
+		<div class="col-sm-4">
+			<div class="card" id="box4">
+				<div class="card-body">
+					<h5 class="card-title">app.js</h5>
+					<pre class="card-text">let express = require('express')
+let app = express()
+
+let personRoute = require('./routes/person')
+app.use(personRoute)
+app.use(express.static('public'))
+
+const PORT  = process.env.PORT || 8080
+app.listen(PORT,()=> console.info(`Server 
+has started on ${PORT}`))</pre>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<section class="moveDiv8">
+	<div class="row">
+		<div class="col-sm-8">
+			<h2>6. App folder</h2>
+			<p>The app folder should contain all the files of the project in an orderly format. The files should be organised
+				into folders such as
+				<ul>
+					<li>Routers : Which contains all the files related to routing Ex: AuthRouter.js </li>
+					<li>Controllers : should receive all the routing from routers Ex: RoleController.js</li>
+					<li>Models : Files in this folder should contain the entity related operation such as accessing DB, processing
+						based on business logic. Ex : Company.js </li>
+				</ul>
+			</p>
+		</div>
+
+		<div class="col-sm-4">
+			<div class="card" id="box5">
+				<div class="card-body">
+					<h5 class="card-title">routers</h5>
+					<pre class="card-text">import Router from "koa-router";
+import RoleController from "../controllers/
+RoleController";
+import Authentication from "../Process/
+Authentication"
+
+const router = new Router();
+
+router.prefix("/iamserver/api/v1");
+router
+.use(Authentication.authorize)
+.post("/roles", RoleController.create)
+.put("/roles/:role", RoleController.update)
+.delete("/roles/:role", 
+RoleController.destroy)
+export default router;
+</pre>
+				</div>
+			</div>
+
+			<br />
+
+			<div class="card" id="box6">
+				<div class="card-body">
+					<h5 class="card-title">controllers</h5>
+					<pre class="card-text">"use strict";
+import Controller from "../../Controller";
+import Company from "../models/Company"
+
+class RoleController extends Controller {
+
+        async getCompanies(ctx){
+            try {                
+                ctx.body = await 
+									Company.allCompanies()
+            }
+            catch (err) {
+                ctx.throw(err)
+            } 
+        } 
+    }
+    export default new RoleController();
+</pre>
+				</div>
+			</div>
+
+			<br />
+			<div class="card" id="box7">
+				<div class="card-body">
+					<h5 class="card-title">models</h5>
+					<pre class="card-text">import CompanySchema from 
+"../../database/schema/CompanySchema";
+
+class Company extends Database {
+    constructor() {
+        super(CompanySchema);
+    }
+    async allCompanies(){
+        return  
+        this.model.find().populate('users')
+    }
+}
+
+export default new Company();
+</pre>
+					<a href="https://dev.to/devlcodes/file-structure-of-a-node-project-3opk" class="card-link">file structure</a>
+					<a href="https://blog.logrocket.com/the-perfect-architecture-flow-for-your-next-node-js-project/"
+						class="card-link">project architecture</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<!-- https://dev.to/devlcodes/file-structure-of-a-node-project-3opk -->

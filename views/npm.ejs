@@ -1,0 +1,176 @@
+<section class="moveDiv">
+	<h1>NPM</h1>
+	<div class="row">
+		<div class="col-sm-8">
+			<p>We use NPM (node package manager for JavaScript programming language) to download and install 3rd-party
+				packages from NPM registry.
+				All the installed packages and their dependencies are stored under
+				node_modules folders. This folder should be excluded from the source control.
+				Node packages follow semantic versioning: major.minor.patch</p>
+			<p>npm consists of three distinct components:</p>
+			<ul class="dash">
+				<li>the website</li>
+				<li>the Command Line Interface (CLI)</li>
+				<li>the registry</li>
+			</ul>
+			<p>Use the website to discover packages, set up profiles, and manage other aspects of your npm experience. For
+				example, you can set up organizations to manage access to public or private packages.
+				The CLI runs from a terminal, and is how most developers interact with npm.
+				The registry is a large public database of JavaScript software and the meta-information surrounding it.
+			</p>
+		</div>
+</section>
+
+
+<section class="moveDiv2">
+	<h1>Installing node.js and npm</h1>
+	<!-- https://docs.npmjs.com/downloading-and-installing-node-js-and-npm -->
+</section>
+
+<section class="moveDiv3">
+	<div class="row npm">
+		<div class="col-sm-8">
+
+			<h5>Installation and packages</h5>
+			<h6>Working with npm globally</h6>
+			<pre class="colorStyled">npm install -g npm</pre>
+			<h6>Checking your version of npm and node.js</h6>
+			<pre class="colorStyled">node -v</pre>
+			<pre class="colorStyled">npm -v</pre>
+			<h6>If you want to install a package with specific version</h6>
+			<pre class="colorStyled">npm i -g npm@5.5.1</pre>
+
+			<h5>Dependencies</h5>
+			<h6>The list of all dependences and their exact versions</h6>
+			<pre class="colorStyled">npm list</pre>
+			<h6>The dependencies of your application</h6>
+			<pre class="colorStyled">npm list --depth=0</pre>
+
+			<h5>Libraries</h5>
+			<h6>Find meta-data about a library, e.g. mongoose</h6>
+			<pre class="colorStyled">npm view mongoose</pre>
+			<h6>or only about the dependencies</h6>
+			<pre class="colorStyled">npm view mongoose dependencies</pre>
+			<h6>To see all the versions/history of a library (e.g. mongoose) released so far</h6>
+			<pre class="colorStyled">npm view mongoose versions</pre>
+			<h6>Install a specific version of a library/package</h6>
+			<pre class="colorStyled">npm i mongoose@2.4.2</pre>
+
+			<h5>Updates</h5>
+			<h6>Outdated packages and newer versions</h6>
+			<pre class="colorStyled">npm outdated</pre>
+			<h6>Update the package</h6>
+			<pre class="colorStyled">npm update</pre>
+			<h6>Update to the latest major version (on mac prefix with <span class="sudo">sudo</span>)</h6>
+			<pre class="colorStyled">npm i -g npm-check-updates </pre>
+			<h6>Show all the updates done after install</h6>
+			<pre class="colorStyled">npm-check-updates</pre>
+			<h6>Run <span class="sudo">ncu -u</span> to upgrade package.json after all the updates. Then installing these
+				dependencies <span class="sudo">npm i</span> </h6>
+			<h6>Development dependencies should not go into production</h6>
+			<h6>Uldating all packages</h6>
+			<pre class="colorStyled">npm i</pre>
+
+			<h5>Uninstall</h5>
+			<h6>Uninstall a package (e.g. mongoose)</h6>
+			<pre class="colorStyled">npm uninstall mongoose</pre>
+			<p><span class="sudo">uninstall</span> could be shortened and written as <span class="sudo">un</span></p>
+
+			<h5>Glabal Packages</h5>
+			<h6>Upgrading global packages -g to the latest version (with <span class="sudo">sudo on mac</span>)</h6>
+			<pre class="colorStyled">npm i -g npm </pre>
+			<h6>Installing a specific version globally</h6>
+			<pre class="colorStyled">sudo npm i -g webpack-cli@4.5.0</pre>
+			<h6>Find out all the outdated Global Packages</h6>
+			<pre class="colorStyled">npm -g outdated </pre>
+			<h6>npm un -g nameOfThe Package</h6>
+
+			<h5>Publishing a package</h5>
+			<h6>Create an account or login</h6>
+			<pre class="colorStyled">npm adduser</pre>
+			<pre class="colorStyled">npm login</pre>
+			<h6>Add your credentials</h6>
+			<pre class="colorStyled">Username:   userName</pre>
+			<pre class="colorStyled">Password:   myPassword</pre>
+			<pre class="colorStyled">Email:      email@email.com</pre>
+			<h6>Publish your package</h6>
+			<pre class="colorStyled">npm publish</pre>
+			<h6>Updating a published package</h6>
+			<pre class="colorStyled">npm version major/minor/patch</pre>
+			<pre class="colorStyled">npm publish</pre>
+
+			<h5>Using nodemon</h5>
+			<h6>Load nodemon package through terminal. It helps to automatically restarts the node app, when file changes in
+				the
+				directory are detected</h6>
+			<pre class="colorStyled">npm i –save-dev nodemon</pre>
+			<pre class="colorStyled">npm i -g nodemon</pre>
+			<h6>Application isn't restarting, use --legacy-watch (the last resort)</h6>
+			<pre class="colorStyled">nodemon -L</pre>
+
+			<h5>Yarn is another package manager</h5>
+			<h6>Download yarn or checking the version</h6>
+			<pre class="colorStyled">npm i -g yarn</pre>
+			<pre class="colorStyled">yarn -v</pre>
+
+			<h5>Installation of the other packages</h5>
+			<h6>express</h6>
+			<pre class="colorStyled">npm i express</pre>
+			<h6>validation joi</h6>
+			<pre class="colorStyled">npm i joi </pre>
+			<h6>file configuration</h6>
+			<pre class="colorStyled">npm i --config</pre>
+			<h6>debugging</h6>
+			<pre class="colorStyled">npm i --debug</pre>
+			<h6>frontend html</h6>
+			<pre class="colorStyled">npm i --pug</pre>
+			<h6>express app security</h6>
+			<pre class="colorStyled">npm i --helmet</pre>
+			<h6>HTTP request logger middleware for node (a helper that generates request logs)</h6>
+			<pre class="colorStyled">npm i --morgan</pre>
+
+			<h5>GIT (helps to ignore e.g. node_modules folder)</h5>
+			<h6>Initialize git repository</h6>
+			<pre class="colorStyled">git init</pre>
+			<h6>Which files to add</h6>
+			<pre class="colorStyled">git status</pre>
+			<h6>Create a file in the root of the folder</h6>
+			<pre class="colorStyled">.gitignore</pre>
+			<h6>In file .gitignore write</h6>
+			<pre class="colorStyled">node_modules/</pre>
+			<h6>Check the status again</h6>
+			<pre class="colorStyled">git status</pre>
+			<h6>Add a file to send to git</h6>
+			<pre class="colorStyled">git add</pre>
+			<h6>And commit with message info</h6>
+			<pre class="colorStyled">git commit -m “Out first commit”</pre>
+
+		</div>
+
+
+
+		<div class="col-sm-4">
+			<div class="card" id="box">
+				<div class="card-body">
+					<h5 class="card-title">creating a project in VScode</h5>
+					<!-- <h6 class="card-subtitle mb-2">package.json</h6> -->
+
+					<pre class="card-text">//create a project through terminal
+	mkdir node-app
+//Go to that created folder
+	cd node-app
+// look up the file in the folder
+	ls
+// open this folder in VScode
+	code .
+// generate package.json
+	npm init --y
+// If there are no node_modules
+	npm install
+
+</pre>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

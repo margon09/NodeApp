@@ -1,0 +1,192 @@
+<section class="moveDiv">
+	<h1>About the project</h1>
+	<div class="row">
+		<div class="col-sm-6">
+			<p>This project uses NodeJS and EJS, which is an embeded JavaScript (js) template for node.
+				Each section will describe constituent parts of building software web applications, both
+				client side and server side, which are written only using js. In addition to it, it is also be possible to read
+				about js and css main rules.</p>
+		</div>
+</section>
+
+<section class="moveDiv2">
+	<h1>Structure</h1>
+	<!-- <div class="row col"> -->
+	<div class="row">
+		<div class="col-sm-4" style="z-index: 1;">
+
+			<div class="card" id="b1">
+				<div class="card-body">
+					<h5 class="card-title">app structure</h5>
+					<img class="resizeme img" src="img/structure2.png" alt="app structure" width="150" height="100">
+					<br />
+					<input class="btn" type="button" value="resize"
+						style="background-color:rgb(228, 198, 159); border-radius: 4px;" />
+				</div>
+			</div>
+
+			<br />
+			<div class="card" id="b2">
+				<div class="card-body">
+					<h5 class="card-title">package.json</h5>
+					<pre class="card-text">{
+  "name": "my_package",
+  "version": "1.0.0",
+  "dependencies": {
+    "my_dep": "^1.0.0",
+    "another_dep": "~2.2.0"
+  }
+}</pre>
+					<a href="https://docs.npmjs.com/specifying-dependencies-and-devdependencies-in-a-package-json-file"
+						class="card-link">dependencies</a>
+					<a href="https://docs.npmjs.com/cli/v7/commands/npm-init" class="card-link">npm-init</a>
+				</div>
+			</div>
+
+			<br />
+			<div class="card" id="b3">
+				<div class="card-body">
+					<h5 class="card-title">app.js</h5>
+					<pre class="card-text">const express = require('express')
+const expressLayouts = 
+ require('express-ejs-layouts')
+
+const app = express()
+const port = 8080
+
+app.listen(port, (err) => {
+if (err)
+console.log(err)
+console.log(`Listening to port ${port}...`)
+})</pre>
+				</div>
+			</div>
+
+			<br />
+			<div class="card" id="b4">
+				<div class="card-body">
+					<h5 class="card-title">middleware</h5>
+					<pre class="card-text">app.use(express.static('public'))
+app.use('/css', express.static
+(__dirname + '/public/css'))
+app.use('/js', express.static
+(__dirname + '/public/js'))
+app.use('/img', express.static
+(__dirname + '/public/img'))</pre>
+					<a href="https://expressjs.com/en/guide/using-middleware.html" class="card-link">using middleware</a>
+				</div>
+			</div>
+
+			<br />
+			<div class="card" id="b5">
+				<div class="card-body">
+					<h5 class="card-title">template engines</h5>
+					<pre class="card-text">// set template engine
+app.use(expressLayouts)
+// layout full-width.ejs
+app.set('layout', './layouts/full-width')
+app.set('view engine', 'ejs')</pre>
+					<a href="https://expressjs.com/en/guide/using-template-engines.html" class="card-link">using template
+						engines with Express</a>
+				</div>
+			</div>
+
+			<br />
+			<div class="card" id="b6">
+				<div class="card-body">
+					<h5 class="card-title">routing</h5>
+					<pre class="card-text">app.get('/', (req, res) => {
+	res.render('index')
+})
+app.get('/node', (req, res) => {
+	res.render('node')
+})</pre>
+					<a href="https://expressjs.com/en/guide/routing.html" class="card-link">express routing</a>
+				</div>
+			</div>
+
+		</div>
+		<div class="col-sm-8">
+			<p>In the image below you will find the overall structure of the project. Project is built is Node js with ejs
+				template. The main idea behind using ejs was to dynamically include files like header and footer and at the same
+				time change content of the body.</p>
+			<p>The public folder contains css-, img- and js folders with the related files.</p>
+			<p>Apart from the ordinary link to css document and javascript files it also contains links to the bootstrap,
+				jQuery
+				and JavaScript in the head of the file</p>
+
+			<p>Under the views there are several
+				folders: layouts and partials. Layouts folder contains the main file, which includes the header and the footer
+				together with the main body of the page depending on which page you are.</p>
+			<p>Folder node_modules could be
+				imported when you start npm in terminal (read in further details on npm and node page). To install all the
+				required node
+				dependancies in package.json you need to write the command
+				<pre class="colorStyled">npm install</pre>
+			</p>
+			<p>Package.json file is in the project root. It is a collection of name/value pairs, wrapped in brackets {}.
+				This
+				file gives information to
+				npm that allows it to identify the
+				project as well as handle the project's dependencies (ejs, express and express-ejs-layouts). "Dependencies" is
+				a
+				keyword in
+				package.json that holds an object("key":"value" pairs), specifying the dependencies. It has semantic
+				versioning. As example, to specify acceptable version ranges up to 1.0.4, use the following syntax:
+				<ul class="card-text">
+					<li>Patch releases: 1.0 or 1.0.x or ~1.0.4</li>
+					<li>Minor releases: 1 or 1.x or ^1.0.4</li>
+					<li>Major releases: * or x</li>
+				</ul>
+			</p>
+			<p> create this file automatically through the terminal you need to write the command:
+				<pre class="colorStyled">npm init --y</pre>
+				<p>"y" is responsible for omitting questions, while
+					creating
+					the json file.</p>
+
+				<p>Another file is package-lock.json, which is not on the image, as it is generated automatically for any
+					operations where npm modifies
+					either the
+					node_modules tree, or package.json. It describes the exact tree that was generated, such that subsequent
+					installs
+					are able to generate identical trees, regardless of intermediate dependency updates.</p>
+				<p>In the app.js file you need to load express and layouts modules and listen to the node port. As I am
+					working
+					on
+					mac, my port is 8080 though the default server port on windows is 3000. At the end of app.js you have to
+					listen to the port. In order to see if the port is available log the potential error message and port number
+					to the terminal. This will allow you to see which port you are at and if the port is available.
+					If you run into the message as, e.g.
+					<pre class="colorStyled">"Port 3000 is already in use by another process"</pre>
+					<p>you have
+						to</p>
+					<pre class="colorStyled">npx kill-port 3000</pre>
+					<p>On mac just close the pot and restart the terminal.</p>
+				</p>
+				<p>Express is a routing and middleware web
+					framework that has minimal functionality of its own: An Express application is essentially a series of
+					middleware
+					function calls. Application level middleware in my app.js is using express.static.</p>
+				<p>The app. set() function is used to assigns the setting name to value. Further down I am setting the
+					template
+					engine EJS. In general a template engine enables you to use static
+					template files in
+					your application. At runtime, the template engine replaces variables in a template file with actual values,
+					and
+					transforms the template into an HTML file sent to the client. This approach makes it easier to design an
+					HTML
+					page.
+				</p>
+				<p>Finally, I am creating a very basic routing. Routing refers to determining how an application responds to a
+					client request to a particular endpoint, which
+					is a
+					URI (or path) and a specific HTTP request method (GET, POST, PUT, DELETE).
+
+					Each route can have one or more handler functions, which are executed when the route is matched.</p>
+		</div>
+
+	</div>
+</section>
+
+<!-- https://javascript.info/animation -->

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Node JS</title>
+	<!-- CSS -->
+	<link rel="stylesheet" href="css/main.css">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<!-- jQuery link -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- Js themes -->
+	<script src="js/themes.js"></script>
+	<!-- When menu is active -->
+	<script src="js/activeMenu.js"></script>
+	<!-- This is only for development environment (favicon error in browser), remove for production -->
+	<link rel="shortcut icon" href="#">
+</head>
+
+<body>
+	<div class="box">
+		<div class="jumbotron jumbotron-fluid">
+			<%- include('../partials/header.ejs') %>
+		</div>
+		<div class="container-fluid">
+			<div class="mainBody">
+				<main><%- body %></main>
+			</div>
+			<%- include('../partials/footer.ejs') %>
+		</div>
+	</div>
+
+
+	<!-- Sinning Logo -->
+	<script src="js/spinLogo.js"></script>
+	<script src="js/imageResize.js"></script>
+	<script src="js/boxAnim.js"></script>
+
+</body>
+
+</html>
